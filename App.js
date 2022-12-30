@@ -1,4 +1,11 @@
-import { StyleSheet, TextInput, View, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  ImageBackground,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 
 export default function App() {
   return (
@@ -14,9 +21,12 @@ export default function App() {
           <View style={{ marginBottom: 16 }}>
             <TextInput style={styles.input} />
           </View>
-          <View>
+          <View style={{ marginBottom: 43 }}>
             <TextInput style={styles.input} secureTextEntry={true} />
           </View>
+          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+            <Text style={styles.textBtn}>Зарегистрироваться</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
@@ -42,5 +52,16 @@ const styles = StyleSheet.create({
   },
   form: {
     marginHorizontal: 16,
+  },
+  btn: {
+    height: 50,
+    backgroundColor: "#FF6C00",
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textBtn: {
+    color: "#fff",
+    fontSize: 16,
   },
 });
