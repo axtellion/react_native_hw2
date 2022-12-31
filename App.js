@@ -13,12 +13,21 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+const initialState = {
+  login: "",
+  email: "",
+  password: "",
+};
+
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [state, setState] = useState(initialState);
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
+    console.log(state);
+    setState(initialState);
   };
 
   return (
@@ -26,7 +35,7 @@ export default function App() {
       <View style={styles.container}>
         <ImageBackground
           style={styles.images}
-          source={require("./images/bg-register.jpg")}
+          source={require("./assets/images/bg-register.jpg")}
         >
           <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"}>
             <View
@@ -36,12 +45,20 @@ export default function App() {
                 <TextInput
                   style={styles.input}
                   onFocus={() => setIsShowKeyboard(true)}
+                  value={state.login}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, login: value }))
+                  }
                 />
               </View>
               <View style={{ marginBottom: 16 }}>
                 <TextInput
                   style={styles.input}
                   onFocus={() => setIsShowKeyboard(true)}
+                  value={state.email}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, email: value }))
+                  }
                 />
               </View>
               <View style={{ marginBottom: 43 }}>
@@ -49,6 +66,10 @@ export default function App() {
                   style={styles.input}
                   secureTextEntry={true}
                   onFocus={() => setIsShowKeyboard(true)}
+                  value={state.password}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, password: value }))
+                  }
                 />
               </View>
               <TouchableOpacity
